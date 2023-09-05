@@ -32,17 +32,27 @@ time.sleep(2.0)
 fps = FPS().start()
 
 def record_attendance(name):
+    # open the 'attendance.csv' file in read and write mode ('r+')
     with open('attendance.csv', 'r+') as file:
+        # read all lines from the file and store them in the List variable
         List = file.readlines()
         namelist = []
 
+        # iterate through each line in the List
         for line in List:
+            # split the line into a list using comma as the delimiter
             record = line.split(',')
+            # append the first element (name) to the namelist
             namelist.append(record[0])
+
+        # check if the given name is not in the namelist
         if name not in namelist:
+            # get the current date and time
             now = datetime.now()
-            dt = now.strftime('%H:%M:%S')
-            file.writelines(f'\n{name},{dt}')
+            # format the current date and time as 'mm/dd/yyyy hh:mm:ssAM/PM'
+            dt = now.strftime('%m/%d/%Y %I:%M:%S%p')
+            # write a new line to the file with the formatted date, time, and name
+            file.writelines(f'\n{dt},{name}')
 
 # loop over frames from the video file stream
 while True:
@@ -100,7 +110,9 @@ while True:
 			#If someone in your dataset is identified, print their name on the screen
 			if currentname != name:
 				currentname = name
-				print(currentname)
+				print("Welcome", currentname, "!")
+				
+				record_attendance(currentname)
 		
 		# update the list of names
 		names.append(name)

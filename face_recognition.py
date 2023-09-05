@@ -17,12 +17,12 @@ cascade = "haarcascade_frontalface_default.xml"
 
 # load the known faces and embeddings along with OpenCV's Haar
 # cascade for face detection
-print("[INFO] loading encodings + face detector...")
+print("[INFO] Loading encodings + face detector...")
 data = pickle.loads(open(encodingsP, "rb").read())
 detector = cv2.CascadeClassifier(cascade)
 
 # initialize the video stream and allow the camera sensor to warm up
-print("[INFO] starting video stream...")
+print("[INFO] Starting video stream...")
 vs = VideoStream(src=0).start()
 #vs = VideoStream(usePiCamera=True).start()
 time.sleep(2.0)

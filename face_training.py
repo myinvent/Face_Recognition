@@ -7,7 +7,7 @@ import cv2
 import os
 
 # our images are located in the dataset folder
-print("[INFO] start processing faces...")
+print("[INFO] Start processing faces...")
 imagePaths = list(paths.list_images("dataset"))
 
 # initialize the list of known encodings and known names
@@ -17,7 +17,7 @@ knownNames = []
 # loop over the image paths
 for (i, imagePath) in enumerate(imagePaths):
 	# extract the person name from the image path
-	print("[INFO] processing image {}/{}".format(i + 1,
+	print("[INFO] Processing image {}/{}".format(i + 1,
 		len(imagePaths)))
 	name = imagePath.split(os.path.sep)[-2]
 
@@ -42,7 +42,7 @@ for (i, imagePath) in enumerate(imagePaths):
 		knownNames.append(name)
 
 # dump the facial encodings + names to disk
-print("[INFO] serializing encodings...")
+print("[INFO] Serializing encodings...")
 data = {"encodings": knownEncodings, "names": knownNames}
 f = open("encodings.pickle", "wb")
 f.write(pickle.dumps(data))
